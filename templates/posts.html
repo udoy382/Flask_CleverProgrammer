@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Posts {% endblock title %}
+
+{% block body %}
+    <h2 class="text-center my-5">(( ALL BLOG POST ))</h2>
+    <a href="/posts/new" class="btn btn-success m-5">+ New Post</a>
+    {% for post in posts %}
+
+        <h2>{{ post.title }}</h2>
+
+        {% if post.author %}
+        <small>Written by - {{ post.author }} on {{ post.date_posted }}</small>
+        {% else %}
+        <small>Written by - Unknown on {{ post.date_posted }}</small>
+        {% endif %}
+        <p class="white-space:pre-wrap">{{ post.content }}</p>
+        <br>
+        <a href="/posts/delete/{{post.id}}" class="btn btn-danger">Deleted</a>
+
+        <a href="/posts/edit/{{post.id}}" class="btn btn-primary">Edit</a>
+        <hr>
+
+    {% endfor %}
+{% endblock body %}
